@@ -1,0 +1,89 @@
+﻿<?xml version="1.0" encoding="UTF-8" ?>
+<Application
+    x:Class="ModoConectado.App"
+    xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    xmlns:local="clr-namespace:ModoConectado">
+    <Application.Resources>
+        <ResourceDictionary>
+            <ResourceDictionary.MergedDictionaries>
+                <ResourceDictionary Source="Resources/Styles/Colors.xaml" />
+                <ResourceDictionary Source="Resources/Styles/Styles.xaml" />
+            </ResourceDictionary.MergedDictionaries>
+
+            <!--  BOTONES  -->
+            <Style x:Key="Botones" TargetType="Button">
+                <Setter Property="Background" Value="{StaticResource azul}" />
+                <Setter Property="FontFamily" Value="titulos" />
+                <Setter Property="CornerRadius" Value="15" />
+                <Setter Property="FontSize" Value="17" />
+                <Setter Property="CharacterSpacing" Value="1.2" />
+                <Setter Property="BorderWidth" Value="3" />
+                <Setter Property="BorderColor" Value="{StaticResource rosaClarito}" />
+                <Setter Property="TextColor" Value="{StaticResource White}" />
+                <Setter Property="HeightRequest" Value="40" />
+            </Style>
+
+            <!--  RECTANGULOS  -->
+            <Style x:Key="RectanguloBase" TargetType="Rectangle">
+                <Setter Property="BackgroundColor" Value="{StaticResource rosaClarito}" />
+                <Setter Property="Stroke" Value="{StaticResource rosaClarito}" />
+                <Setter Property="Opacity" Value="0.5" />
+            </Style>
+
+            <!--  RECTANGULOS INDIVIDUALES  -->
+            <Style
+                x:Key="RectangulosIndividuales"
+                BasedOn="{StaticResource RectanguloBase}"
+                TargetType="Rectangle">
+                <Setter Property="HeightRequest" Value="10" />
+                <Setter Property="WidthRequest" Value="160" />
+            </Style>
+
+            <!--  RECTANGULOS MUCHOS  -->
+            <Style
+                x:Key="RectanguloMuchos"
+                BasedOn="{StaticResource RectanguloBase}"
+                TargetType="Rectangle">
+                <Setter Property="HeightRequest" Value="10" />
+                <Setter Property="WidthRequest" Value="130" />
+            </Style>
+
+            <!--  Labels  -->
+            <Style x:Key="LabelsInfo" TargetType="Label">
+                <Setter Property="HorizontalOptions" Value="Center" />
+                <Setter Property="VerticalOptions" Value="Center" />
+                <Setter Property="FontFamily" Value="titulos" />
+                <Setter Property="FontSize" Value="20" />
+                <Setter Property="CharacterSpacing" Value="1" />
+                <Setter Property="TextColor" Value="{StaticResource azul2}" />
+            </Style>
+
+            <!--  Entrys  -->
+            <Style x:Key="Entrys" TargetType="Entry">
+                <Setter Property="BackgroundColor" Value="{StaticResource azulClarito2}" />
+                <Setter Property="PlaceholderColor" Value="{StaticResource rosa}" />
+                <Setter Property="WidthRequest" Value="150" />
+                <Setter Property="HeightRequest" Value="0" />
+                <Setter Property="TextColor" Value="{StaticResource azulOscurito}" />
+                <Setter Property="HorizontalTextAlignment" Value="Start" />
+            </Style>
+
+            <!--  Datepicker  -->
+            <Style x:Key="DatePicker" TargetType="DatePicker">
+                <Setter Property="BackgroundColor" Value="{StaticResource rosaClarito}"/>
+                <Setter Property="Margin" Value="25,0,0,0" />
+                <Setter Property="TextColor" Value="{StaticResource White}" />
+            </Style>
+
+            <!--  Entry Buscador  -->
+            <Style x:Key="EntryBuscador" TargetType="Entry" >
+                <Setter Property="BackgroundColor" Value="{StaticResource rosaClarito}"/>
+                <Setter Property="TextColor" Value="{StaticResource azulOscurito}"/>
+                <Setter Property="PlaceholderColor" Value="{StaticResource White}"/>
+                <Setter Property="HeightRequest" Value="0"/>
+            </Style>
+
+        </ResourceDictionary>
+    </Application.Resources>
+</Application>

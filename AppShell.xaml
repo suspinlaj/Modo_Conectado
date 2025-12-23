@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<Shell
+    x:Class="ModoConectado.AppShell"
+    xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    xmlns:local="clr-namespace:ModoConectado"
+    Title="ModoConectado"
+    FlyoutBehavior="Disabled"
+    Shell.BackgroundColor="{StaticResource azul2}"
+    Shell.TabBarBackgroundColor="{StaticResource rosaClarito}"
+    Shell.TabBarForegroundColor="{StaticResource azul}"
+    Shell.TabBarTitleColor="{StaticResource azulOscuro}"
+    Shell.TabBarUnselectedColor="{StaticResource White}"
+    Shell.TitleColor="{StaticResource White}">
+
+    <TabBar>
+        <ShellContent Title="Inicio" ContentTemplate="{DataTemplate local:MainPage}" />
+        <ShellContent Title="Gestión de Empleados" ContentTemplate="{DataTemplate local:GestionEmpleados}" />
+    </TabBar>
+
+</Shell>

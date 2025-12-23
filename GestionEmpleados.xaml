@@ -1,0 +1,136 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage
+    x:Class="ModoConectado.GestionEmpleados"
+    xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    Title="GestionEmpleados"
+    BackgroundColor="White">
+
+
+    <Grid>
+        <Image Source="fondo3.jpg"
+               Aspect="AspectFill"/>
+
+        <ScrollView>
+            <Grid ColumnDefinitions="*,auto" ColumnSpacing="200">
+
+                <!--  Labels  -->
+                <Grid Margin="40,0,0,0" RowDefinitions="*,*,*,*,*,*">
+
+                    <!--  1º fila  -->
+                    <Grid Grid.Row="0" ColumnDefinitions="*,*">
+                        <Rectangle Grid.Column="0" Style="{StaticResource RectangulosIndividuales}" />
+                        <Label
+                        Grid.Column="0"
+                        Style="{StaticResource LabelsInfo}"
+                        Text="Departamentos" />
+
+                        <Rectangle Grid.Column="1" Style="{StaticResource RectangulosIndividuales}" />
+                        <Label
+                        Grid.Column="1"
+                        Style="{StaticResource LabelsInfo}"
+                        Text="Localizaciones" />
+                    </Grid>
+
+                    <Grid Grid.Row="1" ColumnDefinitions="*,*">
+                        <ListView Grid.Column="0" VerticalOptions="Start" />
+                        <ListView Grid.Column="1" VerticalOptions="Start" />
+                    </Grid>
+
+                    <!--  2º Fila  -->
+                    <Grid Grid.Row="2" ColumnDefinitions="*,*,*,*,*">
+                        <Border Grid.Column="0" Style="{StaticResource RectanguloMuchos}" />
+                        <Label
+                        Grid.Column="0"
+                        Style="{StaticResource LabelsInfo}"
+                        Text="Apellidos" />
+
+                        <Border Grid.Column="1" Style="{StaticResource RectanguloMuchos}" />
+                        <Label
+                        Grid.Column="1"
+                        Style="{StaticResource LabelsInfo}"
+                        Text="Oficios" />
+
+                        <Border Grid.Column="2" Style="{StaticResource RectanguloMuchos}" />
+                        <Label
+                        Grid.Column="2"
+                        Style="{StaticResource LabelsInfo}"
+                        Text="Salarios" />
+
+                        <Border Grid.Column="3" Style="{StaticResource RectanguloMuchos}" />
+                        <Label
+                        Grid.Column="3"
+                        Style="{StaticResource LabelsInfo}"
+                        Text="Comisiones" />
+
+                        <Border Grid.Column="4" Style="{StaticResource RectanguloMuchos}" />
+                        <Label
+                        Grid.Column="4"
+                        Style="{StaticResource LabelsInfo}"
+                        Text="Fecha de Alta" />
+
+                    </Grid>
+
+
+                    <Grid Grid.Row="3" ColumnDefinitions="*,*,*,*,*">
+                        <ListView Grid.Column="0" />
+                        <ListView Grid.Column="1" />
+                        <ListView Grid.Column="2" />
+                        <ListView Grid.Column="3" />
+                        <ListView Grid.Column="4" />
+                    </Grid>
+
+                    <!--  3º Fila  -->
+
+                    <Grid Grid.Row="4" ColumnDefinitions="*,*,*,*,*">
+                        <Entry
+                        Grid.Column="0"
+                        Placeholder="Apellidos"
+                        Style="{StaticResource Entrys}" />
+                        <Entry
+                        Grid.Column="1"
+                        Placeholder="Oficios"
+                        Style="{StaticResource Entrys}" />
+                        <Entry
+                        Grid.Column="2"
+                        Placeholder="Salarios"
+                        Style="{StaticResource Entrys}" />
+                        <Entry
+                        Grid.Column="3"
+                        Placeholder="Comisión"
+                        Style="{StaticResource Entrys}" />
+                        <DatePicker Grid.Column="4" Style="{StaticResource DatePicker}" />
+                    </Grid>
+
+                    <!--  4º Fila  -->
+                    <Grid Grid.Row="5" ColumnDefinitions="*,*,*">
+                        <Rectangle Grid.Column="0" Style="{StaticResource RectanguloMuchos}" />
+                        <Label
+                        Grid.Column="0"
+                        Style="{StaticResource LabelsInfo}"
+                        Text="Buscar por:" />
+                        <ListView Grid.Column="1" />
+                        <Entry Grid.Column="2" Placeholder="Buscar" Style="{StaticResource EntryBuscador}"/>
+                    </Grid>
+
+
+                </Grid>
+
+                <!--  Botones  -->
+                <VerticalStackLayout
+                Grid.Column="1"
+                Margin="0,0,50,0"
+                HorizontalOptions="End"
+                Spacing="30"
+                VerticalOptions="Center">
+                    <Button Style="{StaticResource Botones}" Text="Buscar" />
+                    <Button Style="{StaticResource Botones}" Text="Guardar" />
+                    <Button Style="{StaticResource Botones}" Text="Actualizar" />
+                    <Button Style="{StaticResource Botones}" Text="Borrar" />
+                    <Button Style="{StaticResource Botones}" Text="Limpiar" />
+                </VerticalStackLayout>
+            </Grid>
+        </ScrollView>
+    </Grid>
+
+</ContentPage>
