@@ -4,133 +4,182 @@
     xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
     xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
     Title="GestionEmpleados"
-    BackgroundColor="White">
-
+    BackgroundColor="{StaticResource crema}">
 
     <Grid>
-        <Image Source="fondo3.jpg"
-               Aspect="AspectFill"/>
 
-        <ScrollView>
-            <Grid ColumnDefinitions="*,auto" ColumnSpacing="200">
+        <!-- Fondo -->
+        <Image Source="fondo.jpg"
+               Aspect="AspectFill" />
 
-                <!--  Labels  -->
-                <Grid Margin="40,0,0,0" RowDefinitions="*,*,*,*,*,*">
+        <!-- Grid principal (SIN ScrollView) -->
+        <Grid ColumnDefinitions="*,Auto"
+              ColumnSpacing="200">
 
-                    <!--  1º fila  -->
-                    <Grid Grid.Row="0" ColumnDefinitions="*,*">
-                        <Rectangle Grid.Column="0" Style="{StaticResource RectangulosIndividuales}" />
-                        <Label
-                        Grid.Column="0"
-                        Style="{StaticResource LabelsInfo}"
-                        Text="Departamentos" />
+            <!-- Contenido -->
+            <Grid Margin="30,0,30,0"
+                  RowDefinitions="Auto,*,Auto,*,Auto,Auto">
 
-                        <Rectangle Grid.Column="1" Style="{StaticResource RectangulosIndividuales}" />
-                        <Label
-                        Grid.Column="1"
-                        Style="{StaticResource LabelsInfo}"
-                        Text="Localizaciones" />
-                    </Grid>
+                <!-- 1º fila: Títulos Departamento -->
+                <Grid Grid.Row="0"
+                      ColumnDefinitions="*,*"
+                      Margin="0,30,0,0">
 
-                    <Grid Grid.Row="1" ColumnDefinitions="*,*">
-                        <ListView Grid.Column="0" VerticalOptions="Start" />
-                        <ListView Grid.Column="1" VerticalOptions="Start" />
-                    </Grid>
+                    <Rectangle Grid.Column="0"
+                               Style="{StaticResource RectangulosIndividuales}" />
+                    <Label Grid.Column="0"
+                           Style="{StaticResource LabelsInfo}"
+                           Text="Departamentos" />
 
-                    <!--  2º Fila  -->
-                    <Grid Grid.Row="2" ColumnDefinitions="*,*,*,*,*">
-                        <Border Grid.Column="0" Style="{StaticResource RectanguloMuchos}" />
-                        <Label
-                        Grid.Column="0"
-                        Style="{StaticResource LabelsInfo}"
-                        Text="Apellidos" />
+                    <Rectangle Grid.Column="1"
+                               Style="{StaticResource RectangulosIndividuales}" />
+                    <Label Grid.Column="1"
+                           Style="{StaticResource LabelsInfo}"
+                           Text="Localizaciones" />
+                </Grid>
 
-                        <Border Grid.Column="1" Style="{StaticResource RectanguloMuchos}" />
-                        <Label
-                        Grid.Column="1"
-                        Style="{StaticResource LabelsInfo}"
-                        Text="Oficios" />
+                <!-- 2º fila: Listas Departamentos -->
+                <Grid Grid.Row="1"
+                      ColumnDefinitions="*,*"
+                      Margin="0,10,0,0">
 
-                        <Border Grid.Column="2" Style="{StaticResource RectanguloMuchos}" />
-                        <Label
-                        Grid.Column="2"
-                        Style="{StaticResource LabelsInfo}"
-                        Text="Salarios" />
+                    <ListView x:Name="listaDepartamentos"
+                              Grid.Column="0"
+                              ItemsSource="{Binding Departamento}">
+                        <ListView.ItemTemplate>
+                            <DataTemplate>
+                                <ViewCell>
+                                    <Label Text="{Binding Nombre}"
+                                           Style="{StaticResource ListViewsText}" />
+                                </ViewCell>
+                            </DataTemplate>
+                        </ListView.ItemTemplate>
+                    </ListView>
 
-                        <Border Grid.Column="3" Style="{StaticResource RectanguloMuchos}" />
-                        <Label
-                        Grid.Column="3"
-                        Style="{StaticResource LabelsInfo}"
-                        Text="Comisiones" />
-
-                        <Border Grid.Column="4" Style="{StaticResource RectanguloMuchos}" />
-                        <Label
-                        Grid.Column="4"
-                        Style="{StaticResource LabelsInfo}"
-                        Text="Fecha de Alta" />
-
-                    </Grid>
-
-
-                    <Grid Grid.Row="3" ColumnDefinitions="*,*,*,*,*">
-                        <ListView Grid.Column="0" />
-                        <ListView Grid.Column="1" />
-                        <ListView Grid.Column="2" />
-                        <ListView Grid.Column="3" />
-                        <ListView Grid.Column="4" />
-                    </Grid>
-
-                    <!--  3º Fila  -->
-
-                    <Grid Grid.Row="4" ColumnDefinitions="*,*,*,*,*">
-                        <Entry
-                        Grid.Column="0"
-                        Placeholder="Apellidos"
-                        Style="{StaticResource Entrys}" />
-                        <Entry
-                        Grid.Column="1"
-                        Placeholder="Oficios"
-                        Style="{StaticResource Entrys}" />
-                        <Entry
-                        Grid.Column="2"
-                        Placeholder="Salarios"
-                        Style="{StaticResource Entrys}" />
-                        <Entry
-                        Grid.Column="3"
-                        Placeholder="Comisión"
-                        Style="{StaticResource Entrys}" />
-                        <DatePicker Grid.Column="4" Style="{StaticResource DatePicker}" />
-                    </Grid>
-
-                    <!--  4º Fila  -->
-                    <Grid Grid.Row="5" ColumnDefinitions="*,*,*">
-                        <Rectangle Grid.Column="0" Style="{StaticResource RectanguloMuchos}" />
-                        <Label
-                        Grid.Column="0"
-                        Style="{StaticResource LabelsInfo}"
-                        Text="Buscar por:" />
-                        <ListView Grid.Column="1" />
-                        <Entry Grid.Column="2" Placeholder="Buscar" Style="{StaticResource EntryBuscador}"/>
-                    </Grid>
-
+                    <ListView x:Name="listaLocalizacion"
+                              Grid.Column="1"
+                              ItemsSource="{Binding Departamento}">
+                        <ListView.ItemTemplate>
+                            <DataTemplate>
+                                <ViewCell>
+                                    <Label Text="{Binding Localizacion}"
+                                           Style="{StaticResource ListViewsText}" />
+                                </ViewCell>
+                            </DataTemplate>
+                        </ListView.ItemTemplate>
+                    </ListView>
 
                 </Grid>
 
-                <!--  Botones  -->
-                <VerticalStackLayout
-                Grid.Column="1"
-                Margin="0,0,50,0"
-                HorizontalOptions="End"
-                Spacing="30"
-                VerticalOptions="Center">
-                    <Button Style="{StaticResource Botones}" Text="Buscar" />
-                    <Button Style="{StaticResource Botones}" Text="Guardar" />
-                    <Button Style="{StaticResource Botones}" Text="Actualizar" />
-                    <Button Style="{StaticResource Botones}" Text="Borrar" />
-                    <Button Style="{StaticResource Botones}" Text="Limpiar" />
-                </VerticalStackLayout>
+                <!-- 3º fila: Títulos Empleados -->
+                <Grid Grid.Row="2"
+                      ColumnDefinitions="*,*,*,*,*"
+                      Margin="0,30,0,0">
+
+                    <Border Grid.Column="0" Style="{StaticResource RectanguloMuchos}" />
+                    <Label Grid.Column="0" Style="{StaticResource LabelsInfo}" Text="Apellidos" />
+
+                    <Border Grid.Column="1" Style="{StaticResource RectanguloMuchos}" />
+                    <Label Grid.Column="1" Style="{StaticResource LabelsInfo}" Text="Oficios" />
+
+                    <Border Grid.Column="2" Style="{StaticResource RectanguloMuchos}" />
+                    <Label Grid.Column="2" Style="{StaticResource LabelsInfo}" Text="Salarios" />
+
+                    <Border Grid.Column="3" Style="{StaticResource RectanguloMuchos}" />
+                    <Label Grid.Column="3" Style="{StaticResource LabelsInfo}" Text="Comisiones" />
+
+                    <Border Grid.Column="4" Style="{StaticResource RectanguloMuchos}" />
+                    <Label Grid.Column="4" Style="{StaticResource LabelsInfo}" Text="Fecha de Alta" />
+                </Grid>
+
+                <!-- 4º fila: ListView Empleados -->
+                <ListView x:Name="listaEmpleados"
+                          Grid.Row="3"
+                          ItemsSource="{Binding Empleados}">
+
+                    <ListView.ItemTemplate>
+                        <DataTemplate>
+                            <ViewCell>
+                                <Grid ColumnDefinitions="*,*,*,*,*"
+                                      Padding="5">
+                                    <Label Text="{Binding Apellido}" Grid.Column="0" Style="{StaticResource ListViewsText}" />
+                                    <Label Text="{Binding Oficio}" Grid.Column="1" Style="{StaticResource ListViewsText}" />
+                                    <Label Text="{Binding Salario}" Grid.Column="2" Style="{StaticResource ListViewsText}" />
+                                    <Label Text="{Binding Comision}" Grid.Column="3" Style="{StaticResource ListViewsText}" />
+                                    <Label Text="{Binding FechaAlta, StringFormat='{0:dd/MM/yyyy}'}"
+                                           Grid.Column="4"
+                                           Style="{StaticResource ListViewsText}" />
+                                </Grid>
+                            </ViewCell>
+                        </DataTemplate>
+                    </ListView.ItemTemplate>
+                </ListView>
+
+                <!-- 5º fila: Entrys -->
+                <Grid Grid.Row="4"
+                      ColumnDefinitions="*,*,*,*,*"
+                      Margin="5,40,0,20">
+
+                    <Entry Grid.Column="0" Placeholder="Apellidos" Style="{StaticResource Entrys}" />
+                    <Entry Grid.Column="1" Placeholder="Oficios" Style="{StaticResource Entrys}" />
+                    <Entry Grid.Column="2" Placeholder="Salarios" Style="{StaticResource Entrys}" />
+                    <Entry Grid.Column="3" Placeholder="Comisión" Style="{StaticResource Entrys}" />
+                    <DatePicker Grid.Column="4" Style="{StaticResource DatePicker}" />
+                </Grid>
+
+                <!-- 6º fila: Buscador -->
+                <Grid Grid.Row="5"
+                      ColumnDefinitions="Auto,Auto,Auto"
+                      Margin="0,30,0,30"
+                      ColumnSpacing="5"
+                      HorizontalOptions="Center">
+
+                    <Rectangle Grid.Column="0"
+                                Style="{StaticResource RectanguloMuchos}" />
+                        <Label Grid.Column="0"
+                               Text="Buscar por:"
+                               Style="{StaticResource LabelsInfo}"
+                               VerticalOptions="Center"/>
+
+                    <Border Style="{StaticResource BorderListView}" Grid.Column="1">
+                    <ListView 
+                              x:Name="listaCampos"
+                              ItemsSource="{Binding CamposBusqueda}"
+                              HeightRequest="100">
+                        <ListView.ItemTemplate>
+                            <DataTemplate>
+                                <ViewCell>
+                                    <Label Text="{Binding}"
+                                           Style="{StaticResource ListViewsText}"
+                                           Padding="5" />
+                                </ViewCell>
+                            </DataTemplate>
+                        </ListView.ItemTemplate>
+                    </ListView>
+                    </Border>
+
+                    <Entry Grid.Column="2"
+                           x:Name="entradaBuscar"
+                           Placeholder="Buscar"
+                           Style="{StaticResource EntryBuscador}" />
+                </Grid>
+
             </Grid>
-        </ScrollView>
+
+            <!-- Botones -->
+            <VerticalStackLayout Grid.Column="1"
+                                 Margin="0,0,50,0"
+                                 Spacing="30"
+                                 VerticalOptions="Center">
+
+                <Button Style="{StaticResource Botones}" Text="Buscar" />
+                <Button Style="{StaticResource Botones}" Text="Guardar" />
+                <Button Style="{StaticResource Botones}" Text="Actualizar" />
+                <Button Style="{StaticResource Botones}" Text="Borrar" />
+                <Button Style="{StaticResource Botones}" Text="Limpiar" />
+            </VerticalStackLayout>
+
+        </Grid>
     </Grid>
 
 </ContentPage>

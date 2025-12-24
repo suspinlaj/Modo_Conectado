@@ -6,12 +6,12 @@
     xmlns:local="clr-namespace:ModoConectado"
     Title="ModoConectado"
     FlyoutBehavior="Disabled"
-    Shell.BackgroundColor="{StaticResource azul2}"
+    Shell.BackgroundColor="{StaticResource azulBueno}"
     Shell.TabBarBackgroundColor="{StaticResource rosaClarito}"
-    Shell.TabBarForegroundColor="{StaticResource azul}"
+    Shell.TabBarForegroundColor="{StaticResource azulBueno}"
     Shell.TabBarTitleColor="{StaticResource azulOscuro}"
-    Shell.TabBarUnselectedColor="{StaticResource White}"
-    Shell.TitleColor="{StaticResource White}">
+    Shell.TabBarUnselectedColor="{StaticResource crema}"
+    Shell.TitleColor="{StaticResource crema}">
 
     <TabBar>
         <ShellContent Title="Inicio" ContentTemplate="{DataTemplate local:MainPage}" />

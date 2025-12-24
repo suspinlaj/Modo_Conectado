@@ -13,14 +13,14 @@
 
             <!--  BOTONES  -->
             <Style x:Key="Botones" TargetType="Button">
-                <Setter Property="Background" Value="{StaticResource azul}" />
+                <Setter Property="Background" Value="{StaticResource crema}" />
                 <Setter Property="FontFamily" Value="titulos" />
                 <Setter Property="CornerRadius" Value="15" />
                 <Setter Property="FontSize" Value="17" />
                 <Setter Property="CharacterSpacing" Value="1.2" />
                 <Setter Property="BorderWidth" Value="3" />
                 <Setter Property="BorderColor" Value="{StaticResource rosaClarito}" />
-                <Setter Property="TextColor" Value="{StaticResource White}" />
+                <Setter Property="TextColor" Value="{StaticResource azul2}" />
                 <Setter Property="HeightRequest" Value="40" />
             </Style>
 
@@ -61,8 +61,8 @@
 
             <!--  Entrys  -->
             <Style x:Key="Entrys" TargetType="Entry">
-                <Setter Property="BackgroundColor" Value="{StaticResource azulClarito2}" />
-                <Setter Property="PlaceholderColor" Value="{StaticResource rosa}" />
+                <Setter Property="BackgroundColor" Value="{StaticResource azulBueno}" />
+                <Setter Property="PlaceholderColor" Value="{StaticResource crema}" />
                 <Setter Property="WidthRequest" Value="150" />
                 <Setter Property="HeightRequest" Value="0" />
                 <Setter Property="TextColor" Value="{StaticResource azulOscurito}" />
@@ -72,18 +72,48 @@
             <!--  Datepicker  -->
             <Style x:Key="DatePicker" TargetType="DatePicker">
                 <Setter Property="BackgroundColor" Value="{StaticResource rosaClarito}"/>
-                <Setter Property="Margin" Value="25,0,0,0" />
-                <Setter Property="TextColor" Value="{StaticResource White}" />
+                <Setter Property="TextColor" Value="{StaticResource crema}" />
+                <Setter Property="WidthRequest" Value="140" />
             </Style>
 
             <!--  Entry Buscador  -->
             <Style x:Key="EntryBuscador" TargetType="Entry" >
                 <Setter Property="BackgroundColor" Value="{StaticResource rosaClarito}"/>
                 <Setter Property="TextColor" Value="{StaticResource azulOscurito}"/>
-                <Setter Property="PlaceholderColor" Value="{StaticResource White}"/>
+                <Setter Property="PlaceholderColor" Value="{StaticResource crema}"/>
                 <Setter Property="HeightRequest" Value="0"/>
+                <Setter Property="WidthRequest" Value="600" />
+            </Style>
+            
+            <!-- ListViews Texto -->
+            <Style x:Key="ListViewsText" TargetType="Label">
+                <Setter Property="TextColor" Value="{StaticResource rosa}"/>
+                <Setter Property="HorizontalOptions" Value="Fill" />
+                <Setter Property="VerticalOptions" Value="Fill" />
+                <Setter Property="HorizontalTextAlignment" Value="Center" />
+                <Setter Property="VerticalTextAlignment" Value="Center" />
             </Style>
 
+            <!-- ListViews Bordes -->
+            <Style x:Key="BorderListView" TargetType="Border">
+                <Setter Property="Stroke" Value="{StaticResource azul2}"/>
+                <Setter Property="StrokeShape" Value="5"/>
+                <Setter Property="WidthRequest" Value="100"/>
+                <Setter Property="HeightRequest" Value="120"/>
+                <Setter Property="Margin" Value="60,0,60,0" />
+            </Style>
+
+            <!-- Grids Texto -->
+            <Style x:Key="GridsTexto" TargetType="Grid">
+                <Setter Property="VerticalOptions" Value="Fill"/>
+                <Setter Property="HorizontalOptions" Value="Fill"/>
+            </Style>
+
+            <!-- ListViews -->
+            <Style x:Key="ListViews" TargetType="ListView">
+                <Setter Property="VerticalOptions" Value="Fill"/>
+                <Setter Property="HorizontalOptions" Value="Fill"/>
+            </Style>
         </ResourceDictionary>
     </Application.Resources>
 </Application>

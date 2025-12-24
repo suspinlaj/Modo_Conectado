@@ -10,18 +10,12 @@
     <Color x:Key="azul2">#6494ee</Color>
     <Color x:Key="azulClarito">#aec3ef</Color>
     <Color x:Key="azulClarito2">#d9e6fa</Color>
+    <Color x:Key="azulBueno">#94b7e1</Color>
 
     <Color x:Key="rosaClarito">#efafad</Color>
     <Color x:Key="rosa">#e68e95</Color>
-    <Color x:Key="naranja">#f8746b</Color>
-    <Color x:Key="rojo">#de5b5f</Color>
+    <Color x:Key="crema">#f9f5ec</Color>
 
-    <!--
-    <Color x:Key="azulOscuro">#22577A</Color>
-    <Color x:Key="azul">#38A3A5</Color>
-    <Color x:Key="verdeAzulado">#57CC99</Color>
-    <Color x:Key="verdE">#80ED99</Color>
-    <Color x:Key="verdeClarito">#C7F9CC</Color>-->
 
     <Color x:Key="Primary">#512BD4</Color>
     <Color x:Key="PrimaryDark">#ac99ea</Color>
