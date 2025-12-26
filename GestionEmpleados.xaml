@@ -12,11 +12,9 @@
         <Image Source="fondo.jpg"
                Aspect="AspectFill" />
 
-        <!-- Grid principal (SIN ScrollView) -->
         <Grid ColumnDefinitions="*,Auto"
               ColumnSpacing="200">
 
-            <!-- Contenido -->
             <Grid Margin="30,0,30,0"
                   RowDefinitions="Auto,*,Auto,*,Auto,Auto">
 
@@ -45,6 +43,7 @@
 
                     <ListView x:Name="listaDepartamentos"
                               Grid.Column="0"
+                              ItemSelected="OnDepartamentoSeleccionado"
                               ItemsSource="{Binding Departamento}">
                         <ListView.ItemTemplate>
                             <DataTemplate>
@@ -62,7 +61,7 @@
                         <ListView.ItemTemplate>
                             <DataTemplate>
                                 <ViewCell>
-                                    <Label Text="{Binding Localizacion}"
+                                    <Label Text="{Binding .}"
                                            Style="{StaticResource ListViewsText}" />
                                 </ViewCell>
                             </DataTemplate>
@@ -95,6 +94,7 @@
                 <!-- 4º fila: ListView Empleados -->
                 <ListView x:Name="listaEmpleados"
                           Grid.Row="3"
+                          ItemSelected="OnEmpleadoSeleccionado"
                           ItemsSource="{Binding Empleados}">
 
                     <ListView.ItemTemplate>
@@ -102,7 +102,7 @@
                             <ViewCell>
                                 <Grid ColumnDefinitions="*,*,*,*,*"
                                       Padding="5">
-                                    <Label Text="{Binding Apellido}" Grid.Column="0" Style="{StaticResource ListViewsText}" />
+                                    <Label Text="{Binding Apellido}" Grid.Column="0" Style="{StaticResource ListViewsText}"  />
                                     <Label Text="{Binding Oficio}" Grid.Column="1" Style="{StaticResource ListViewsText}" />
                                     <Label Text="{Binding Salario}" Grid.Column="2" Style="{StaticResource ListViewsText}" />
                                     <Label Text="{Binding Comision}" Grid.Column="3" Style="{StaticResource ListViewsText}" />

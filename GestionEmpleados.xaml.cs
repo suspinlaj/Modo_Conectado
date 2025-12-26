@@ -1,25 +1,61 @@
+using Microsoft.Data.Sqlite;
+using ModoConectado.Interfaz;
 using ModoConectado.Modelos;
+using ModoConectado.Servicio;
 using System.Collections.ObjectModel;
+using System.Threading.Tasks;
 
 namespace ModoConectado;
 
 public partial class GestionEmpleados : ContentPage
 {
-    // Colecciones para los ListView
-    private ObservableCollection<Empleado> empleados = new ObservableCollection<Empleado>();
-    private ObservableCollection<Departamento> departamentos = new ObservableCollection<Departamento>();
+    private const string NombreArchivoBD = "empresa_bd.db";
+    private string rutaBD;
+
+    // Servicios
+    private EmpleadoService empleadoService;
+    private DepartamentoService departamentoService;
+
+    // Colecciones para poner en las ListViews
+    public ObservableCollection<Empleado> Empleados { get; set; }
+    public ObservableCollection<Departamento> Departamentos { get; set; }
+    public ObservableCollection<string> Localizaciones { get; set; }
+
 
     public GestionEmpleados()
     {
         InitializeComponent();
 
         CamposBusqueda();
-        CargarDatosEjemplo();
 
-        // Asignar ItemsSource de tus ListView
-        listaEmpleados.ItemsSource = empleados;
-        listaDepartamentos.ItemsSource = departamentos;
-        listaLocalizacion.ItemsSource = departamentos;
+        rutaBD = Path.Combine(FileSystem.AppDataDirectory, NombreArchivoBD);
+
+        // Inicializar DAO y Servicios
+        var empleadoDao = new EmpleadoSqliteDAO(rutaBD);
+        var departamentoDao = new DepartamentoSqliteDAO(rutaBD);
+        empleadoService = new EmpleadoService(empleadoDao);
+        departamentoService = new DepartamentoService(departamentoDao);
+
+        Empleados = new ObservableCollection<Empleado>();
+        Departamentos = new ObservableCollection<Departamento>();
+        Localizaciones = new ObservableCollection<string>();
+
+        // Poner datos a las listview
+        listaDepartamentos.ItemsSource = Departamentos;
+        listaEmpleados.ItemsSource = Empleados;
+        listaLocalizacion.ItemsSource = Localizaciones;
+    }
+    protected override async void OnAppearing()
+    {
+        base.OnAppearing();
+
+        // Cargar Departamentos
+        Departamentos.Clear();
+        var deps = await departamentoService.GetTodosDepartamentos();
+        foreach (var d in deps)
+            Departamentos.Add(d);
+
+        Empleados.Clear();
     }
 
     private void CamposBusqueda()
@@ -36,36 +72,31 @@ public partial class GestionEmpleados : ContentPage
         listaCampos.ItemsSource = camposBusqueda;
     }
 
-    private void CargarDatosEjemplo()
+    // mostrar empleados y localizacion del departamento seleccionado
+    private async void OnDepartamentoSeleccionado(object sender, SelectedItemChangedEventArgs e)
     {
-        // Departamentos
-        departamentos.Add(new Departamento { DeptNo = 1, Nombre = "Ventas", Localizacion = "Madrid" });
-        departamentos.Add(new Departamento { DeptNo = 2, Nombre = "IT", Localizacion = "Barcelona" });
-        departamentos.Add(new Departamento { DeptNo = 3, Nombre = "RRHH", Localizacion = "Valencia" });
-        departamentos.Add(new Departamento { DeptNo = 1, Nombre = "Ventas", Localizacion = "Madrid" });
-        departamentos.Add(new Departamento { DeptNo = 2, Nombre = "IT", Localizacion = "Barcelona" });
-        departamentos.Add(new Departamento { DeptNo = 3, Nombre = "RRHH", Localizacion = "Valencia" });
-        departamentos.Add(new Departamento { DeptNo = 1, Nombre = "Ventas", Localizacion = "Madrid" });
-        departamentos.Add(new Departamento { DeptNo = 2, Nombre = "IT", Localizacion = "Barcelona" });
-        departamentos.Add(new Departamento { DeptNo = 3, Nombre = "RRHH", Localizacion = "Valencia" });
-        departamentos.Add(new Departamento { DeptNo = 1, Nombre = "Ventas", Localizacion = "Madrid" });
-        departamentos.Add(new Departamento { DeptNo = 2, Nombre = "IT", Localizacion = "Barcelona" });
-        departamentos.Add(new Departamento { DeptNo = 3, Nombre = "RRHH", Localizacion = "Valencia" });
-        departamentos.Add(new Departamento { DeptNo = 1, Nombre = "Ventas", Localizacion = "Madrid" });
-        departamentos.Add(new Departamento { DeptNo = 2, Nombre = "IT", Localizacion = "Barcelona" });
-        departamentos.Add(new Departamento { DeptNo = 3, Nombre = "RRHH", Localizacion = "Valencia" });
-        departamentos.Add(new Departamento { DeptNo = 1, Nombre = "Ventas", Localizacion = "Madrid" });
-        departamentos.Add(new Departamento { DeptNo = 2, Nombre = "IT", Localizacion = "Barcelona" });
-        departamentos.Add(new Departamento { DeptNo = 3, Nombre = "RRHH", Localizacion = "Valencia" });
+        if (e.SelectedItem == null)
+            return;
 
-        // Empleados
-        empleados.Add(new Empleado { EmpNo = 100, Apellido = "Pérez", Oficio = "Vendedor", Salario = 2000, Comision = 150, FechaAlta = DateTime.Parse("2020-01-10"), DeptNo = 1 });
-        empleados.Add(new Empleado { EmpNo = 101, Apellido = "Gómez", Oficio = "Programador", Salario = 3000, Comision = 0, FechaAlta = DateTime.Parse("2019-05-20"), DeptNo = 2 });
-        empleados.Add(new Empleado { EmpNo = 102, Apellido = "López", Oficio = "RRHH", Salario = 2500, Comision = 0, FechaAlta = DateTime.Parse("2021-07-15"), DeptNo = 3 });
-        empleados.Add(new Empleado { EmpNo = 100, Apellido = "Pérez", Oficio = "Vendedor", Salario = 2000, Comision = 150, FechaAlta = DateTime.Parse("2020-01-10"), DeptNo = 1 });
-        empleados.Add(new Empleado { EmpNo = 101, Apellido = "Gómez", Oficio = "Programador", Salario = 3000, Comision = 0, FechaAlta = DateTime.Parse("2019-05-20"), DeptNo = 2 });
-        empleados.Add(new Empleado { EmpNo = 102, Apellido = "López", Oficio = "RRHH", Salario = 2500, Comision = 0, FechaAlta = DateTime.Parse("2021-07-15"), DeptNo = 3 });
+        var dept = (Departamento)e.SelectedItem;
 
-        empleados.Add(new Empleado { EmpNo = 103, Apellido = "Martínez", Oficio = "Programador", Salario = 3200, Comision = 0, FechaAlta = DateTime.Parse("2022-03-01"), DeptNo = 2 });
+        Localizaciones.Clear();
+        // mostrar la localización en el ListView
+        Localizaciones.Add(dept.Localizacion);
+
+        // Cargar empleados del departamento
+        Empleados.Clear();
+        var empleadosDept = await empleadoService.GetEmpleadoPorDepartamento(dept.DeptNo);
+        foreach (var emp in empleadosDept)
+            Empleados.Add(emp);
+    }
+
+    // poner los datos del empleado seleccionado en los entrys
+    private async void OnEmpleadoSeleccionado(object sender, SelectedItemChangedEventArgs e)
+    {
+        if (e.SelectedItem == null)
+            return;
+
+       
     }
 }

@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace ModoConectado.Modelos
 {
-    class Departamento
+    public class Departamento
     {
         public int DeptNo { get; set; }
         public string Nombre { get; set; }

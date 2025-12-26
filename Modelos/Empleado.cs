@@ -6,13 +6,13 @@ using System.Threading.Tasks;
 
 namespace ModoConectado.Modelos
 {
-    class Empleado
+    public class Empleado
     {
         public int EmpNo { get; set; }
         public string Apellido { get; set; }
         public string Oficio { get; set; }
-        public double Salario { get; set; }
-        public double Comision { get; set; }
+        public decimal Salario { get; set; }
+        public decimal Comision { get; set; }
         public DateTime FechaAlta { get; set; }
         public int DeptNo { get; set; }
     }
