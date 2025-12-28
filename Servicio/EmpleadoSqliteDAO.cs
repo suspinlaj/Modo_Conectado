@@ -111,7 +111,7 @@ namespace ModoConectado.Servicio
         }
 
         // OBTENER los empleados por el criterio de BUSQUDA
-        public async Task<List<Empleado>> GetEmpleadosByBusqueda(string busqueda, string value)
+        public async Task<List<Empleado>> GetEmpleadosByBusqueda(string busqueda, string valor)
         {
             var empleados = new List<Empleado>();
 
@@ -119,8 +119,9 @@ namespace ModoConectado.Servicio
             await connection.OpenAsync();
 
             var command = connection.CreateCommand();
+            // para poder buscar por una parte
             command.CommandText = $"SELECT * FROM Empleado WHERE {busqueda} LIKE @Busqueda";
-            command.Parameters.AddWithValue("@Busqueda", $"%{value}%");
+            command.Parameters.AddWithValue("@Busqueda", $"%{valor}%");
 
             using var reader = await command.ExecuteReaderAsync();
             while (await reader.ReadAsync())

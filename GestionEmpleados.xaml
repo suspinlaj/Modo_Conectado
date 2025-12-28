@@ -159,7 +159,7 @@
                     </Border>
 
                     <Entry Grid.Column="2"
-                           x:Name="entradaBuscar"
+                           x:Name="entryBuscar"
                            Placeholder="Buscar"
                            Style="{StaticResource EntryBuscador}" />
                 </Grid>

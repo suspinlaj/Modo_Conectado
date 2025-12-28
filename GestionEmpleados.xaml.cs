@@ -1,9 +1,6 @@
-using Microsoft.Data.Sqlite;
-using ModoConectado.Interfaz;
 using ModoConectado.Modelos;
 using ModoConectado.Servicio;
 using System.Collections.ObjectModel;
-using System.Linq.Expressions;
 using System.Threading.Tasks;
 
 namespace ModoConectado;
@@ -132,11 +129,30 @@ public partial class GestionEmpleados : ContentPage
         return false;
     }
 
-    private void OnClickedBuscar(object sender, EventArgs e)
+    // BOTON BUSCAR
+    private async void OnClickedBuscar(object sender, EventArgs e)
     { 
+        if(listaCampos.SelectedItem == null) {
+            await DisplayAlert("Error", "Debes seleccionar un criterio de busqueda", "Aceptar");
+        }else if (string.IsNullOrWhiteSpace(entryBuscar.Text))
+        {
+            await DisplayAlert("Error", "Debes escribir en el texto de búsqueda", "Aceptar");
+        }else
+        {
+            string campo = listaCampos.SelectedItem.ToString();
+            string busqueda = entryBuscar.Text;
 
+            var resultados = await empleadoService.GetEmpleadoPorCriterio(campo, busqueda);
+
+            Empleados.Clear();
+            foreach (var empleado in resultados)
+            {
+                Empleados.Add(empleado);
+            }
+        }
     }
 
+    // BOTON GUARDAR
     private async void OnClickedGuardar(object sender, EventArgs e)
     {
         try
@@ -178,6 +194,7 @@ public partial class GestionEmpleados : ContentPage
         }
     }
 
+    // BOTON ACTUALIZAR
     private async void OnClickedActualizar(object sender, EventArgs e)
     {
         try
@@ -223,6 +240,7 @@ public partial class GestionEmpleados : ContentPage
         }
     }
 
+    // BOTON BORRAR
     private async void OnClickedBorrar(object sender, EventArgs e)
     {
         try
@@ -255,11 +273,13 @@ public partial class GestionEmpleados : ContentPage
         }
     }
 
+    // BOTON LIMPIAR
     private void OnClickedLimpiar(object sender, EventArgs e)
     {
         LimpiarPantalla();
     }
 
+    // limpiar campos
     private void LimpiarPantalla()
     {
         entryApellidos.Text = "";
@@ -267,12 +287,13 @@ public partial class GestionEmpleados : ContentPage
         entrySalarios.Text = "";
         entryComisión.Text = "";
         dateFechaAlta.Date = DateTime.Today;
-        entradaBuscar.Text = "";
+        entryBuscar.Text = "";
 
         Localizaciones.Clear();
         Empleados.Clear();
     }
 
+    // actualizar la lista de empleados
     private async Task CargarEmpleadosDeDepartamento()
     {
         if (departamentoSeleccionado == null) return;
