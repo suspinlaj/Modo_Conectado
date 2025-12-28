@@ -202,6 +202,7 @@ namespace ModoConectado.Servicio
         {
             using var connection = new SqliteConnection($"Data Source={_dbRuta}");
             await connection.OpenAsync();
+
             var command = connection.CreateCommand();
             command.CommandText = @"UPDATE Empleado SET Apellido = @Apellido, Oficio = @Oficio, 
                                     Salario = @Salario, Comision = @Comision, FechaAlta = @FechaAlt  
@@ -212,6 +213,7 @@ namespace ModoConectado.Servicio
             command.Parameters.AddWithValue("@Comision", empleado.Comision);
             command.Parameters.AddWithValue("@FechaAlt", empleado.FechaAlta);
             command.Parameters.AddWithValue("@DeptNo", empleado.DeptNo);
+            command.Parameters.AddWithValue("@EmpNo", empleado.EmpNo);
             return await command.ExecuteNonQueryAsync();
         }
 
